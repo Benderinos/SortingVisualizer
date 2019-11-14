@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidStudioProjects-SortingVisualizer.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidStudioProjects-SortingVisualizer.iml" group="SortingVisualizer" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/SortingVisualizer.iml" filepath="$PROJECT_DIR$/.idea/modules/SortingVisualizer.iml" group="SortingVisualizer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SortingVisualizer-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SortingVisualizer-app.iml" group="SortingVisualizer/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="SortingVisualizer/app" />
     </modules>
   </component>

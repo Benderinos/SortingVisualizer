@@ -2,7 +2,7 @@ package com.chewiegames.sortingvisualizer.algorithms
 
 import kotlin.math.floor
 
-const val NUMBER_OF_ARRAY_BARS = 100
+const val NUMBER_OF_ARRAY_BARS = 259
 
 fun mergeSortHelper(minArray: IntArray, startIndex: Int, endIndex: Int, auxArray: IntArray) {
     if (startIndex == endIndex) return
