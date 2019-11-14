@@ -1,26 +1,19 @@
 package com.chewiegames.sortingvisualizer.ui.main
 
 import android.os.Bundle
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.ui.core.Alignment
-import androidx.ui.core.Text
 import androidx.ui.core.dp
 import androidx.ui.core.setContent
 import androidx.ui.foundation.Clickable
 import androidx.ui.foundation.HorizontalScroller
-import androidx.ui.foundation.gestures.DragDirection
 import androidx.ui.graphics.Color
 import androidx.ui.layout.*
-import androidx.ui.material.Divider
 import androidx.ui.material.FloatingActionButton
-import androidx.ui.material.LinearProgressIndicator
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.surface.Surface
-import androidx.ui.tooling.preview.Preview
-import androidx.ui.vectormath64.rotation
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,12 +32,12 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun App(viewModel: MainViewModel) {
-    var array : State<IntArray> = +state {viewModel.array}
+    var array : State<ArrayList<Int>> = +state {viewModel.array}
     Column {
         HorizontalScroller {
             Row(mainAxisSize = LayoutSize.Expand) {
                 array.value.forEach {
-                    RenderItem(it, onClick = { onSelected(it.toString()) })
+                    RenderColumn(it, onClick = { onSelected(it.toString()) })
                 }
 
             }
@@ -65,7 +58,7 @@ fun App(viewModel: MainViewModel) {
 }
 
 @Composable
-fun RenderItem(number: Int, onClick: () -> Unit) {
+fun RenderColumn(number: Int, onClick: () -> Unit) {
     Clickable(onClick = onClick) {
         Padding(padding = 1.dp) {
             FlexColumn() {
