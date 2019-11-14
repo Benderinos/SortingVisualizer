@@ -1,4 +1,4 @@
-package com.chewiegames.sortingvisualizer
+package com.chewiegames.sortingvisualizer.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
