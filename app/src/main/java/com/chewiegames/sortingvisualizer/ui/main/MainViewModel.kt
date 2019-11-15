@@ -8,7 +8,7 @@ import kotlin.math.floor
 private const val TAG = "MainViewModel"
 class MainViewModel : ViewModel() {
 
-    var array = arrayListOf<Int>()
+    var array = emptyList<Int>()
 
     init {
         resetArray()
@@ -25,21 +25,8 @@ class MainViewModel : ViewModel() {
 
     private fun randomNumberFromIntervals(min: Int, max: Int) = floor(Math.random() * (max - min + 1) + min).toInt()
 
-    fun mergeSort(array: ArrayList<Int>): ArrayList<Int> {
-        val kotlinSortedArray = ArrayList<Int>(array.slice(0 until array.size).sorted())
-        val mergeSortedArray = doMergeSort(array)
-        Log.i(TAG, "" + arrayAreEquals(kotlinSortedArray, mergeSortedArray))
+    fun mergeSort(array: List<Int>): List<Int> {
         return doMergeSort(array)
-    }
-
-    private fun arrayAreEquals(arrayOne: ArrayList<Int>, arrayTwo: ArrayList<Int>) : Boolean{
-        if(arrayOne.size != arrayTwo.size) return false
-        for(i in arrayOne.indices){
-            if(arrayOne[i] != arrayTwo[i]){
-                return false
-            }
-        }
-        return true
     }
 }
 

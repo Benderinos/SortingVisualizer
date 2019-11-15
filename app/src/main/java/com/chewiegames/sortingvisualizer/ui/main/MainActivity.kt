@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun App(viewModel: MainViewModel) {
-    var array : State<ArrayList<Int>> = +state {viewModel.array}
+    var array : State<List<Int>> = +state {viewModel.array}
     Column {
         HorizontalScroller {
             Row(mainAxisSize = LayoutSize.Expand) {
@@ -48,6 +48,7 @@ fun App(viewModel: MainViewModel) {
             Column(mainAxisSize = LayoutSize.Expand, mainAxisAlignment = MainAxisAlignment.End) {
                 FloatingActionButton(text = "new", onClick = {array.value = viewModel.resetArray()})
             }
+            WidthSpacer(width = 2.dp)
             Column(mainAxisSize = LayoutSize.Expand, mainAxisAlignment = MainAxisAlignment.End) {
                 FloatingActionButton(text = "sort", onClick = {array.value = viewModel.mergeSort(array.value)})
             }

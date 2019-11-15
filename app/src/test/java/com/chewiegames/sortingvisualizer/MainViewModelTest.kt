@@ -10,9 +10,9 @@ class MainViewModelTest {
     fun mergeSortTest(){
         val viewModel = MainViewModel()
         val array = viewModel.resetArray()
-        val kotlinSortedArray = ArrayList<Int>(array.slice(0 until array.size).sorted())
+        val kotlinSortedArray = array.sorted()
         val mergeSortedArray = viewModel.mergeSort(array)
 
-        assertTrue(kotlinSortedArray.equals( mergeSortedArray))
+        assertTrue(kotlinSortedArray == mergeSortedArray)
     }
 }
