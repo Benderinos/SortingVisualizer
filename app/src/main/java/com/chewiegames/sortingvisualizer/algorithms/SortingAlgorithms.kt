@@ -3,6 +3,14 @@ package com.chewiegames.sortingvisualizer.algorithms
 import kotlin.math.floor
 
 const val NUMBER_OF_ARRAY_BARS = 259
+const val ANIMATION_SPEED = 1L
+
+val animations = hashMapOf<Int, Int>()
+
+fun getMergeSortAnimations(list: List<Int>) : Map<Int, Int> {
+    doMergeSort(list)
+    return animations
+}
 
 fun doMergeSort(list: List<Int>): List<Int> {
     if(list.size <= 1) return list
@@ -17,21 +25,30 @@ fun merge(left: List<Int>, right: List<Int>) : List<Int>{
     var leftIndex = 0
     var rightIndex = 0
     while (leftIndex < left.count() && rightIndex < right.count()){
+
+        animations[leftIndex] = rightIndex
+        animations[leftIndex] = rightIndex
         if(left[leftIndex] <= right[rightIndex]){
+            animations[leftIndex] = left[leftIndex]
             result.add(left[leftIndex])
             leftIndex++
         }else{
+            animations[rightIndex] = right[rightIndex]
             result.add(right[rightIndex])
             rightIndex++
         }
     }
 
     while (leftIndex < left.size){
+        animations[leftIndex] = leftIndex
+        animations[leftIndex] = leftIndex
         result.add(left[leftIndex])
         leftIndex++
     }
 
     while(rightIndex < right.size){
+        animations[rightIndex] = rightIndex
+        animations[rightIndex] = rightIndex
         result.add(right[rightIndex])
         rightIndex++
     }

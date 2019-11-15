@@ -9,6 +9,7 @@ private const val TAG = "MainViewModel"
 class MainViewModel : ViewModel() {
 
     var array = emptyList<Int>()
+    var animations = mapOf<Int, Int>()
 
     init {
         resetArray()
@@ -28,5 +29,8 @@ class MainViewModel : ViewModel() {
     fun mergeSort(array: List<Int>): List<Int> {
         return doMergeSort(array)
     }
-}
+
+    fun getMergeAnimations(array: List<Int>): Map<Int, Int> {
+        return getMergeSortAnimations(array)
+    }}
 
