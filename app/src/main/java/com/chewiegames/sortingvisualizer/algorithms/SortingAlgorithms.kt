@@ -3,7 +3,7 @@ package com.chewiegames.sortingvisualizer.algorithms
 import kotlin.math.floor
 
 const val NUMBER_OF_ARRAY_BARS = 260 //259 is for looking good
-const val ANIMATION_SPEED = 30L
+const val ANIMATION_SPEED = 3L
 
 var animations = hashMapOf<Int, Int>()
 

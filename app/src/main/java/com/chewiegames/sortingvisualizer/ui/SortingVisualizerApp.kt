@@ -51,7 +51,7 @@ fun RenderColumn(index: Int, number: Int, onClick: () -> Unit) {
             Align(alignment = Alignment.BottomCenter) {
                 Column(crossAxisAlignment = CrossAxisAlignment.End) {
                     Container(width = 2.dp, height = number.dp) {
-                        Surface(color = Color.Red) {
+                        Surface(color = MainViewModel.color) {
                             Align(alignment = Alignment.BottomCenter) {
                             }
                         }

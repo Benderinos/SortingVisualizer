@@ -14,13 +14,18 @@ object MainViewModel {
 
     var array = emptyList<Int>()
     var animations = mapOf<Int, Int>()
+    var color = Color.Red
 
     fun resetArray(): ArrayList<Int> {
         val array = arrayListOf<Int>()
         for (i in 0 until NUMBER_OF_ARRAY_BARS) {
-            array.add(randomNumberFromIntervals(5, 380))
+            Handler().postDelayed({
+                array.add(randomNumberFromIntervals(5, 380))
+                this.array = array
+            }, i * ANIMATION_SPEED )
         }
-        MainViewModel.array = array
+        //MainViewModel.array = array
+        color = Color.Red
         return array
     }
 
@@ -42,7 +47,7 @@ object MainViewModel {
             if (isColorChange) {
                 val barOneIndex = animations.keys.toIntArray()[i]
                 val barTwoIndex = animations[i] ?: error("jeje")
-                val color = if (i % 3 == 0) Color.Cyan else Color.Green
+                val color = if (i % 3 == 0) Color.Cyan else Color.Magenta
                 Handler().postDelayed({
                 }, i * ANIMATION_SPEED)
             } else {
@@ -52,6 +57,7 @@ object MainViewModel {
                 }, i * ANIMATION_SPEED)
             }
         }
+        color = Color.Green
         mergeSort(array)
     }
 
