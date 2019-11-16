@@ -62,7 +62,7 @@ object MainViewModel {
     }
 
     fun onColumnSelected(context: Context, column: String) {
-
+        color = Color.Yellow
     }
 
     fun onNewSelected() {
