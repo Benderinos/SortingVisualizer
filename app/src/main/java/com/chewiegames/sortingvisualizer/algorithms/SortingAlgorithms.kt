@@ -2,12 +2,13 @@ package com.chewiegames.sortingvisualizer.algorithms
 
 import kotlin.math.floor
 
-const val NUMBER_OF_ARRAY_BARS = 259
-const val ANIMATION_SPEED = 1L
+const val NUMBER_OF_ARRAY_BARS = 260 //259 is for looking good
+const val ANIMATION_SPEED = 30L
 
-val animations = hashMapOf<Int, Int>()
+var animations = hashMapOf<Int, Int>()
 
 fun getMergeSortAnimations(list: List<Int>) : Map<Int, Int> {
+    animations = hashMapOf()
     doMergeSort(list)
     return animations
 }

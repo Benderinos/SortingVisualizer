@@ -1,6 +1,6 @@
 package com.chewiegames.sortingvisualizer
 
-import com.chewiegames.sortingvisualizer.ui.main.MainViewModel
+import com.chewiegames.sortingvisualizer.ui.MainViewModel
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
