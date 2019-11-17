@@ -2,6 +2,7 @@ package com.chewiegames.sortingvisualizer.ui
 
 import android.content.Context
 import androidx.compose.Composable
+import androidx.compose.Compose
 import androidx.compose.View
 import androidx.ui.core.Alignment
 import androidx.ui.core.dp
@@ -10,6 +11,7 @@ import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.material.FloatingActionButton
 import androidx.ui.material.surface.Surface
+import com.chewiegames.sortingvisualizer.Column
 import com.chewiegames.sortingvisualizer.ui.MainViewModel.onColumnSelected
 import com.chewiegames.sortingvisualizer.ui.MainViewModel.onMergeSortSelected
 import com.chewiegames.sortingvisualizer.ui.MainViewModel.onNewSelected
@@ -19,9 +21,9 @@ fun App(context: Context) {
     MainViewModel.resetArray()
     FlexRow(mainAxisAlignment = MainAxisAlignment.Center) {
         expanded(1f) {
-            for ((i, v) in MainViewModel.array.withIndex()) {
-                RenderColumn(i, v, onClick = {
-                    onColumnSelected(context, v.toString())
+            for (column in MainViewModel.columns) {
+                RenderColumn(column, onClick = {
+                    onColumnSelected(column)
                 })
             }
         }
@@ -45,13 +47,13 @@ fun FabButton(fabText: String, onClick: () -> Unit) {
 }
 
 @Composable
-fun RenderColumn(index: Int, number: Int, onClick: () -> Unit) {
+fun RenderColumn(column: Column, onClick: () -> Unit) {
     Clickable(onClick = onClick) {
         Padding(padding = 1.dp) {
             Align(alignment = Alignment.BottomCenter) {
                 Column(crossAxisAlignment = CrossAxisAlignment.End) {
-                    Container(width = 2.dp, height = number.dp) {
-                        Surface(color = MainViewModel.color) {
+                    Container(width = 2.dp, height = column.value.dp) {
+                        Surface(color = column.color) {
                             Align(alignment = Alignment.BottomCenter) {
                             }
                         }

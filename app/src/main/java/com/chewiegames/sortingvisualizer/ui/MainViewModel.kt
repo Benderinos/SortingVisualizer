@@ -1,71 +1,75 @@
 package com.chewiegames.sortingvisualizer.ui
 
-import android.content.Context
 import android.os.Handler
 import androidx.compose.Model
-import androidx.compose.composer
+import androidx.core.graphics.component1
+import androidx.core.graphics.component2
 import androidx.ui.graphics.Color
+import com.chewiegames.sortingvisualizer.Column
 import com.chewiegames.sortingvisualizer.algorithms.*
 import kotlin.math.floor
 
 private const val TAG = "MainViewModel"
+
 @Model
 object MainViewModel {
 
-    var array = emptyList<Int>()
+    var columns = emptyList<Column>()
     var animations = mapOf<Int, Int>()
     var color = Color.Red
 
-    fun resetArray(): ArrayList<Int> {
-        val array = arrayListOf<Int>()
+    fun resetArray(): ArrayList<Column> {
+        val columns = arrayListOf<Column>()
         for (i in 0 until NUMBER_OF_ARRAY_BARS) {
             Handler().postDelayed({
-                array.add(randomNumberFromIntervals(5, 380))
-                this.array = array
-            }, i * ANIMATION_SPEED )
+                columns.add(Column(i, randomNumberFromIntervals(5, SIZE_COLUMN), hashMapOf(), color))
+                this.columns = columns
+            }, i * ANIMATION_SPEED)
         }
-        //MainViewModel.array = array
         color = Color.Red
-        return array
+        return columns
     }
 
     private fun randomNumberFromIntervals(min: Int, max: Int) = floor(Math.random() * (max - min + 1) + min).toInt()
 
-    fun mergeSort(array: List<Int>): List<Int> {
-        MainViewModel.array = doMergeSort(array)
-        return MainViewModel.array
+    fun mergeSort(array: List<Column>): List<Column> {
+        this.columns = doMergeSort(array)
+        return columns
     }
 
-    fun getMergeAnimations(array: List<Int>): Map<Int, Int> {
+    fun getMergeAnimations(array: List<Column>): Map<Int, Int> {
         return getMergeSortAnimations(array)
     }
 
     fun onMergeSortSelected() {
-        val animations = getMergeAnimations(array)
-        for (i in 0 until animations.size) {
+        val animations = getMergeAnimations(columns)
+        var i = 0
+        for ((key, value) in animations) {
             val isColorChange = i % 3 != 0
             if (isColorChange) {
-                val barOneIndex = animations.keys.toIntArray()[i]
-                val barTwoIndex = animations[i] ?: error("jeje")
+                val barOneIndex = key
+                val barTwoIndex = value
                 val color = if (i % 3 == 0) Color.Cyan else Color.Magenta
                 Handler().postDelayed({
+                    columns[barOneIndex].color = color
+                    columns[barTwoIndex].color = color
                 }, i * ANIMATION_SPEED)
             } else {
-                val barOneIndex = animations.keys.toIntArray()[i]
-                val barTwoIndex = animations[i]
                 Handler().postDelayed({
+                    val barOneIndex = key
+                    val newHeight = value
+                    columns[barOneIndex].value = newHeight
                 }, i * ANIMATION_SPEED)
             }
+            i++
         }
         color = Color.Green
-        mergeSort(array)
     }
 
-    fun onColumnSelected(context: Context, column: String) {
+    fun onColumnSelected(column: Column) {
+        columns[column.id].color = Color.Yellow
         color = Color.Yellow
     }
 
-    fun onNewSelected() {
-        resetArray()
-    }
+    fun onNewSelected() = resetArray()
 }
