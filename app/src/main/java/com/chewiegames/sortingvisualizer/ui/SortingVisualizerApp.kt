@@ -1,13 +1,11 @@
 package com.chewiegames.sortingvisualizer.ui
 
+import android.app.Activity
 import android.content.Context
 import androidx.compose.Composable
-import androidx.compose.Compose
-import androidx.compose.View
 import androidx.ui.core.Alignment
 import androidx.ui.core.dp
 import androidx.ui.foundation.Clickable
-import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.material.FloatingActionButton
 import androidx.ui.material.surface.Surface
@@ -17,7 +15,7 @@ import com.chewiegames.sortingvisualizer.ui.MainViewModel.onMergeSortSelected
 import com.chewiegames.sortingvisualizer.ui.MainViewModel.onNewSelected
 
 @Composable
-fun App(context: Context) {
+fun App(context: Activity) {
     MainViewModel.resetArray()
     FlexRow(mainAxisAlignment = MainAxisAlignment.Center) {
         expanded(1f) {

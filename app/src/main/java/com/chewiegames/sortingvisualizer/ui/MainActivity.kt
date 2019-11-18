@@ -5,6 +5,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.ui.core.setContent
 import androidx.ui.material.MaterialTheme
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 private const val TAG = "MainActivity"
 
@@ -18,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 //        viewModel = MainViewModel()
         setContent {
             MaterialTheme {
-                App(this)
+                App(this@MainActivity)
             }
         }
     }
