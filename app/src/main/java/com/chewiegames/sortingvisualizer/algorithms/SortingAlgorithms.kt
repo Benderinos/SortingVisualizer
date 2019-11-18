@@ -1,5 +1,6 @@
 package com.chewiegames.sortingvisualizer.algorithms
 
+import android.util.Log
 import com.chewiegames.sortingvisualizer.Column
 import kotlin.math.floor
 
@@ -8,11 +9,12 @@ const val SIZE_COLUMN = 380 //380 looking good
 const val ANIMATION_SPEED = 3L
 
 var animations = arrayListOf<Int>()
-var middleIndex = 0
+var middle = 0
 
+private const val TAG = "SortingAlgorithms"
 fun getMergeSortAnimations(list: List<Column>) : List<Int>{
     animations = arrayListOf()
-    middleIndex = floor((list.size / 2.0)).toInt()
+    middle = floor((list.size / 2.0)).toInt()
     doMergeSort(list)
     return animations
 }
@@ -30,16 +32,20 @@ fun merge(left: List<Column>, right: List<Column>, middleIndex: Int) : List<Colu
     var leftIndex = 0
     var rightIndex = 0
     var animationsIndex = leftIndex
-    var middleIndex = middleIndex+1
+    var middleIndex = middleIndex
     while (leftIndex < left.count() && rightIndex < right.count()){
-        animations.add(leftIndex, middleIndex)
-        animations.add(leftIndex, middleIndex)
+        animations.add(leftIndex)
+        Log.i(TAG, "Add 1 index $middleIndex")
+        animations.add(middleIndex)
+        Log.i(TAG, "Add 1 index $middleIndex")
         if(left[leftIndex].value <= right[rightIndex].value){
-            animations.add(animationsIndex, left[leftIndex].value)
+            animations.add(left[leftIndex].value)
+            Log.i(TAG, "Add 1 value $left[leftIndex].value")
             result.add(left[leftIndex])
             leftIndex++
         }else{
-            animations.add(animationsIndex, right[rightIndex].value)
+            animations.add(right[rightIndex].value)
+            Log.i(TAG, "Add 1 value $right[rightIndex].value")
             result.add(right[rightIndex])
             rightIndex++
             middleIndex++
@@ -48,22 +54,29 @@ fun merge(left: List<Column>, right: List<Column>, middleIndex: Int) : List<Colu
     }
 
     while (leftIndex < left.size){
-        animations.add(leftIndex, leftIndex)
-        animations.add(leftIndex, leftIndex)
-        animations.add(animationsIndex, left[leftIndex].value)
+        animations.add(leftIndex)
+        Log.i(TAG, "Add Left index $leftIndex")
+        animations.add(leftIndex)
+        Log.i(TAG, "Add Left index $leftIndex")
+        animations.add(left[leftIndex].value)
+        Log.i(TAG, "Add Left value $left[leftIndex].value")
         result.add(left[leftIndex])
         leftIndex++
         animationsIndex++
     }
 
     while(rightIndex < right.size){
-        animations.add(middleIndex, middleIndex)
-        animations.add(middleIndex, middleIndex)
-        animations.add(animationsIndex, right[rightIndex].value)
+        animations.add(middleIndex)
+        Log.i(TAG, "Add Right index $middleIndex")
+        animations.add(middleIndex)
+        Log.i(TAG, "Add Right index $middleIndex")
+        animations.add(right[rightIndex].value)
+        Log.i(TAG, "Add Right value $right[rightIndex].value.")
         result.add(right[rightIndex])
         rightIndex++
         animationsIndex++
         middleIndex++
     }
+    Log.i(TAG, "End")
     return result
 }

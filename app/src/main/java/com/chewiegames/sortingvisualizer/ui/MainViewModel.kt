@@ -41,14 +41,14 @@ object MainViewModel {
     fun onMergeSortSelected() {
         val animations = getMergeAnimations(columns)
         for (i in animations.indices) {
-            val isColorChange = i % 3 != 2
+            var isColorChange = false
+            if(i % 3 != 2) isColorChange = true
             if (isColorChange) {
                 var (barOneIndex, barTwoIndex) = animations[i]
-
+                val columnOne = columns[animations[i]]
+                val columnTwo = columns[animations[i]]
+                val color = if (i % 3 == 0) Color.Cyan else Color.Magenta
                 Handler().postDelayed({
-                    val columnOne = columns[animations[i]]
-                    val columnTwo = columns[animations[i]]
-                    val color = if (i % 3 == 0) Color.Cyan else Color.Magenta
                     columns[columnOne.id].color = color
                     columns[columnTwo.id].color = color
                 }, i * ANIMATION_SPEED)
