@@ -9,14 +9,11 @@ import com.chewiegames.sortingvisualizer.Column
 import com.chewiegames.sortingvisualizer.algorithms.*
 import kotlin.math.floor
 
-private const val TAG = "MainViewModel"
-
 @Model
 object MainViewModel {
 
     var columns = emptyList<Column>()
-    var animations = mapOf<Int, Int>()
-    var color = Color.Red
+    private var color = Color.Red
 
     fun resetArray(): ArrayList<Column> {
         val columns = arrayListOf<Column>()
@@ -30,38 +27,38 @@ object MainViewModel {
         return columns
     }
 
-    private fun randomNumberFromIntervals(min: Int, max: Int) = floor(Math.random() * (max - min + 1) + min).toInt()
+    fun randomNumberFromIntervals(min: Int, max: Int) = floor(Math.random() * (max - min + 1) + min).toInt()
 
     fun mergeSort(array: List<Column>): List<Column> {
-        this.columns = doMergeSort(array)
-        return columns
+        //doMergeSort(array)
+        return doMergeSort(array)
     }
 
-    fun getMergeAnimations(array: List<Column>): Map<Int, Int> {
+    private fun getMergeAnimations(array: List<Column>): List<Int> {
         return getMergeSortAnimations(array)
     }
 
     fun onMergeSortSelected() {
         val animations = getMergeAnimations(columns)
-        var i = 0
-        for ((key, value) in animations) {
-            val isColorChange = i % 3 != 0
+        for (i in animations.indices) {
+            val isColorChange = i % 3 != 2
             if (isColorChange) {
-                val barOneIndex = key
-                val barTwoIndex = value
-                val color = if (i % 3 == 0) Color.Cyan else Color.Magenta
+                var (barOneIndex, barTwoIndex) = animations[i]
+
                 Handler().postDelayed({
-                    columns[barOneIndex].color = color
-                    columns[barTwoIndex].color = color
+                    val columnOne = columns[animations[i]]
+                    val columnTwo = columns[animations[i]]
+                    val color = if (i % 3 == 0) Color.Cyan else Color.Magenta
+                    columns[columnOne.id].color = color
+                    columns[columnTwo.id].color = color
                 }, i * ANIMATION_SPEED)
             } else {
                 Handler().postDelayed({
-                    val barOneIndex = key
-                    val newHeight = value
-                    columns[barOneIndex].value = newHeight
+                    val (barOneIndex, newHeight) = animations[i]
+                    val columnOne = columns[animations[i]]
+                    columns[columnOne.id].value = animations[i]
                 }, i * ANIMATION_SPEED)
             }
-            i++
         }
         color = Color.Green
     }
