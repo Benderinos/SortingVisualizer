@@ -3,7 +3,8 @@ package com.chewiegames.sortingvisualizer
 import androidx.ui.graphics.Color
 import com.chewiegames.sortingvisualizer.algorithms.NUMBER_OF_ARRAY_BARS
 import com.chewiegames.sortingvisualizer.algorithms.SIZE_COLUMN
-import com.chewiegames.sortingvisualizer.ui.MainViewModel
+import com.chewiegames.sortingvisualizer.model.Column
+import com.chewiegames.sortingvisualizer.ui.sorting.MainViewModel
 import org.junit.Assert.assertTrue
 import org.junit.Test
 

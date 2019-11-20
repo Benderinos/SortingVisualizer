@@ -1,4 +1,4 @@
-package com.chewiegames.sortingvisualizer
+package com.chewiegames.sortingvisualizer.model
 
 import androidx.ui.graphics.Color
 

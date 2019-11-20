@@ -1,12 +1,11 @@
 package com.chewiegames.sortingvisualizer.algorithms
 
-import com.chewiegames.sortingvisualizer.Column
+import com.chewiegames.sortingvisualizer.model.Column
 import kotlin.math.floor
 
-const val NUMBER_OF_ARRAY_BARS = 310 //260 looking good
+const val NUMBER_OF_ARRAY_BARS = 250 //260 looking good
 const val SIZE_COLUMN = 380 //380 looking good
-const val ANIMATION_SPEED = 1L
-
+const val ANIMATION_SPEED = 3L
 
 private const val TAG = "SortingAlgorithms"
 fun getMergeSortAnimations(list: List<Column>) : ArrayList<Array<Int>>{
@@ -33,35 +32,28 @@ fun merge(left: List<Column>, right: List<Column>, middle: Int, animations: Arra
         animations.add(arrayOf(leftIndex, middleIndex))
         animations.add(arrayOf(leftIndex, middleIndex))
         if(left[leftIndex].value <= right[rightIndex].value){
-            animations.add(arrayOf(k, left[leftIndex].value))
-            result.add(left[leftIndex])
-            leftIndex++
-        }else{
-            animations.add(arrayOf(k, right[rightIndex].value))
-            result.add(right[rightIndex])
-            rightIndex++
+            animations.add(arrayOf(k++, left[leftIndex].value))
+            result.add(left[leftIndex++])
+        } else {
+            animations.add(arrayOf(k++, right[rightIndex].value))
+            result.add(right[rightIndex++])
             middleIndex++
         }
-        k++
     }
 
-    while (leftIndex < left.size){
+    while (leftIndex < left.size) {
         animations.add(arrayOf(leftIndex, leftIndex))
         animations.add(arrayOf(leftIndex, leftIndex))
-        animations.add(arrayOf(k, left[leftIndex].value))
-        result.add(left[leftIndex])
-        leftIndex++
-        k++
+        animations.add(arrayOf(k++, left[leftIndex].value))
+        result.add(left[leftIndex++])
     }
 
-    while(rightIndex < right.size){
+    while (rightIndex < right.size) {
         animations.add(arrayOf(middleIndex, middleIndex))
         animations.add(arrayOf(middleIndex, middleIndex))
-        animations.add(arrayOf(k, right[rightIndex].value))
-        result.add(right[rightIndex])
-        rightIndex++
+        animations.add(arrayOf(k++, right[rightIndex].value))
+        result.add(right[rightIndex++])
         middleIndex++
-        k++
     }
     return result
 }
