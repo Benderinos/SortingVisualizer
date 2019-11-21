@@ -25,10 +25,12 @@ import com.chewiegames.sortingvisualizer.ui.home.HomeScreen
 @Preview
 @Composable
 fun SortScreen() {
+
     MaterialTheme(
         colors = lightThemeColors,
         typography = themeTypography
     ) {
+        MainViewModel.resetArray()
 
         FlexRow(mainAxisAlignment = MainAxisAlignment.Center) {
             expanded(1f) {

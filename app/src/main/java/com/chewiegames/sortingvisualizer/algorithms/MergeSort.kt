@@ -7,9 +7,11 @@ const val NUMBER_OF_ARRAY_BARS = 250 //260 looking good
 const val SIZE_COLUMN = 380 //380 looking good
 const val ANIMATION_SPEED = 3L
 
+var generalMiddle=0
 private const val TAG = "SortingAlgorithms"
 fun getMergeSortAnimations(list: List<Column>) : ArrayList<Array<Int>>{
     val animations = arrayListOf<Array<Int>>()
+    generalMiddle=floor((list.size / 2.0)).toInt()
     doMergeSort(list, animations)
     return animations
 }
@@ -37,6 +39,7 @@ fun merge(left: List<Column>, right: List<Column>, middle: Int, animations: Arra
         } else {
             animations.add(arrayOf(k++, right[rightIndex].value))
             result.add(right[rightIndex++])
+            generalMiddle++
             middleIndex++
         }
     }
@@ -53,6 +56,7 @@ fun merge(left: List<Column>, right: List<Column>, middle: Int, animations: Arra
         animations.add(arrayOf(middleIndex, middleIndex))
         animations.add(arrayOf(k++, right[rightIndex].value))
         result.add(right[rightIndex++])
+        generalMiddle++
         middleIndex++
     }
     return result
