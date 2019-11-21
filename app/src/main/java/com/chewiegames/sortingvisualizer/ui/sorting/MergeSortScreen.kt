@@ -22,6 +22,7 @@ import com.chewiegames.sortingvisualizer.R
 import com.chewiegames.sortingvisualizer.ui.*
 import com.chewiegames.sortingvisualizer.ui.home.HomeScreen
 
+@Preview
 @Composable
 fun SortScreen() {
     MaterialTheme(
@@ -45,20 +46,16 @@ fun SortScreen() {
                 FabButton(fabText = "sort", onClick = { onMergeSortSelected() })
             }
         }
-        FlexColumn{
-            inflexible {
-                TopAppBar (color = Color.Transparent,
-                    title = { Text("") },
-                    navigationIcon = {
-                        VectorImageButton(R.drawable.ic_baseline_arrow_back) {
-                            navigateTo(Screen.Home)
-                        }
+        Padding(padding = 16.dp) {
+            FlexColumn{
+                inflexible {
+                    VectorImageButton(R.drawable.ic_baseline_arrow_back) {
+                        navigateTo(Screen.Home)
                     }
-                )
+                }
             }
         }
     }
-
 }
 
 @Composable

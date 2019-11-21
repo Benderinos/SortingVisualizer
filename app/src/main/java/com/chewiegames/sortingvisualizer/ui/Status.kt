@@ -7,7 +7,9 @@ import androidx.compose.Model
  */
 sealed class Screen {
     object Home : Screen()
-    object SortScreen : Screen()
+    object MergeSortScreen : Screen()
+    object BubbleSortScreen : Screen()
+    object HeapSortScreen : Screen()
 }
 
 @Model

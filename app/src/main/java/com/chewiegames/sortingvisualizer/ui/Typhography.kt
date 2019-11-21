@@ -2,6 +2,7 @@ package com.chewiegames.sortingvisualizer.ui
 
 
 import androidx.ui.core.sp
+import androidx.ui.graphics.Color
 import androidx.ui.material.MaterialTypography
 import androidx.ui.text.TextStyle
 import androidx.ui.text.font.Font
