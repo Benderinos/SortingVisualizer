@@ -8,50 +8,57 @@ import androidx.ui.foundation.Clickable
 import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.material.FloatingActionButton
+import androidx.ui.material.MaterialTheme
 import androidx.ui.material.TopAppBar
 import androidx.ui.material.surface.Surface
 import androidx.ui.tooling.preview.Preview
+import androidx.ui.vectormath64.Matrix4
+import androidx.ui.vectormath64.rotation
 import com.chewiegames.sortingvisualizer.model.Column
-import com.chewiegames.sortingvisualizer.ui.Screen
-import com.chewiegames.sortingvisualizer.ui.VectorImageButton
-import com.chewiegames.sortingvisualizer.ui.navigateTo
 import com.chewiegames.sortingvisualizer.ui.sorting.MainViewModel.onColumnSelected
 import com.chewiegames.sortingvisualizer.ui.sorting.MainViewModel.onMergeSortSelected
 import com.chewiegames.sortingvisualizer.ui.sorting.MainViewModel.onNewSelected
 import com.chewiegames.sortingvisualizer.R
+import com.chewiegames.sortingvisualizer.ui.*
+import com.chewiegames.sortingvisualizer.ui.home.HomeScreen
 
-@Preview
 @Composable
 fun SortScreen() {
-    MainViewModel.resetArray()
-    FlexRow(mainAxisAlignment = MainAxisAlignment.Center) {
-        expanded(1f) {
-            for (column in MainViewModel.columns) {
-                RenderColumn(column, onClick = {
-                    onColumnSelected(column)
-                })
+    MaterialTheme(
+        colors = lightThemeColors,
+        typography = themeTypography
+    ) {
+
+        FlexRow(mainAxisAlignment = MainAxisAlignment.Center) {
+            expanded(1f) {
+                for (column in MainViewModel.columns) {
+                    RenderColumn(column, onClick = {
+                        onColumnSelected(column)
+                    })
+                }
             }
         }
-    }
-    Padding(padding = 16.dp) {
-        Row {
-            FabButton(fabText = "new", onClick = { onNewSelected() })
-            WidthSpacer(width = 4.dp)
-            FabButton(fabText = "sort", onClick = { onMergeSortSelected() })
+        Padding(padding = 16.dp) {
+            Row {
+                FabButton(fabText = "new", onClick = { onNewSelected() })
+                WidthSpacer(width = 4.dp)
+                FabButton(fabText = "sort", onClick = { onMergeSortSelected() })
+            }
         }
-    }
-    FlexColumn{
-        inflexible {
-            TopAppBar (color = Color.Transparent,
+        FlexColumn{
+            inflexible {
+                TopAppBar (color = Color.Transparent,
                     title = { Text("") },
                     navigationIcon = {
                         VectorImageButton(R.drawable.ic_baseline_arrow_back) {
                             navigateTo(Screen.Home)
                         }
                     }
-            )
+                )
+            }
         }
     }
+
 }
 
 @Composable

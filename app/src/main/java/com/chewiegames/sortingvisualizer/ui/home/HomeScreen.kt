@@ -7,7 +7,6 @@ import androidx.ui.tooling.preview.Preview
 import com.chewiegames.sortingvisualizer.ui.Screen
 import com.chewiegames.sortingvisualizer.ui.navigateTo
 
-@Preview
 @Composable
 fun HomeScreen() {
     Center {

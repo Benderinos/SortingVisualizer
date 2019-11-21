@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SortingVisualizer</string>
+    <string name="title_activity_sorting">My Compose App</string>
 </resources>
