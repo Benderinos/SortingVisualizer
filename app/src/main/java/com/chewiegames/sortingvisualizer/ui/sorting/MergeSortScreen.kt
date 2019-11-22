@@ -25,47 +25,41 @@ import com.chewiegames.sortingvisualizer.ui.home.HomeScreen
 @Preview
 @Composable
 fun SortScreen() {
-
-    MaterialTheme(
-        colors = lightThemeColors,
-        typography = themeTypography
-    ) {
-        MainViewModel.resetArray()
-
-        FlexRow(mainAxisAlignment = MainAxisAlignment.Center) {
-            expanded(1f) {
-                for (column in MainViewModel.columns) {
-                    RenderColumn(column, onClick = {
-                        onColumnSelected(column)
-                    })
-                }
+    FlexRow(mainAxisAlignment = MainAxisAlignment.Center) {
+        expanded(1f) {
+            for (column in MainViewModel.columns) {
+                RenderColumn(column, onClick = {
+                    onColumnSelected(column)
+                })
             }
         }
-        Padding(padding = 16.dp) {
-            Row {
-                FabButton(fabText = "new", onClick = { onNewSelected() })
-                WidthSpacer(width = 4.dp)
-                FabButton(fabText = "sort", onClick = { onMergeSortSelected() })
-            }
+    }
+    Padding(padding = 16.dp) {
+        Row {
+            FabButton(fabText = "new", onClick = { onNewSelected() })
+            WidthSpacer(width = 4.dp)
+            FabButton(fabText = "sort", onClick = { onMergeSortSelected() })
         }
-        Padding(padding = 16.dp) {
-            FlexColumn{
-                inflexible {
-                    VectorImageButton(R.drawable.ic_baseline_arrow_back) {
-                        navigateTo(Screen.Home)
-                    }
+    }
+    Padding(padding = 16.dp) {
+        FlexColumn {
+            inflexible {
+                VectorImageButton(R.drawable.ic_baseline_arrow_back) {
+                    navigateTo(Screen.Home)
                 }
             }
         }
     }
+
 }
 
 @Composable
 fun FabButton(fabText: String, onClick: () -> Unit) {
     Column(mainAxisSize = LayoutSize.Expand, mainAxisAlignment = MainAxisAlignment.End) {
         FloatingActionButton(
-                text = fabText,
-                onClick = onClick)
+            text = fabText,
+            onClick = onClick
+        )
     }
 }
 

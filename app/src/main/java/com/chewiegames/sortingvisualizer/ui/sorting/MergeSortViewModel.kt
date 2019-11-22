@@ -32,7 +32,7 @@ object MainViewModel {
     fun mergeSort(array: List<Column>) = doMergeSort(array, arrayListOf())
 
     fun onMergeSortSelected() {
-        val animations = getMergeSortAnimations(columns)
+        val animations = getMergeSortAnimationsNew(columns)
         for (i in 0 until animations.size) {
             val isColorChange = i % 3 != 2
             if (isColorChange) {
